@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Biblioteca {
+public class Biblioteca implements consultaBiblioteca, operacoesBiblioteca {
     private final List<Livro> livros = new ArrayList<>();
     private final List<Usuario> usuarios = new ArrayList<>();
     private final List<Emprestimo> emprestimos = new ArrayList<>();
@@ -17,7 +17,7 @@ public class Biblioteca {
           usuarios.add(usuario);
     } 
     
-
+     @Override
     public List<Livro> getLivros() {
         return List.copyOf(livros);
     }

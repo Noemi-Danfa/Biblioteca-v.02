@@ -1,12 +1,14 @@
 import java.util.Scanner;
 
 public class Menu {
-    private final Biblioteca biblioteca;
+    private final consultaBiblioteca consulta;
+    private final operacoesBiblioteca operacoes;
     private final Scanner sc = new Scanner(System.in);
 
-    public Menu(Biblioteca biblioteca) {
-        this.biblioteca = biblioteca;
-    }
+   public Menu(consultaBiblioteca consulta, operacoesBiblioteca operacoes) {
+    this.consulta = consulta;
+    this.operacoes = operacoes;
+}
 
     public void executar() {
         int opcao = -1;
@@ -28,7 +30,7 @@ public class Menu {
             } else if (opcao == 4) {
                 devolver();
             } else if (opcao == 5) {
-                System.out.println("Total de multas arrecadadas: R$ " + biblioteca.getTotalMultasArrecadadas());
+               System.out.println("Total de multas arrecadadas: R$ " + consulta.getTotalMultasArrecadadas());
             } else if (opcao == 0) {
                 System.out.println("Ate logo.");
             } else {
@@ -50,14 +52,14 @@ public class Menu {
     }
 
     private void listarLivros() {
-        for (Livro livro : biblioteca.getLivros()) {
+        for (Livro livro : consulta.getLivros()) {
             System.out.println("[ID " + livro.getId() + "] - " + livro.getTitulo() + " (" + livro.getAutor() + ") ["
                     + (livro.isDisponivel() ? "disponivel" : "emprestado") + "]");
         }
     }
 
     private void listarUsuarios() {
-        for (Usuario usuario : biblioteca.getUsuarios()) {
+        for (Usuario usuario : consulta.getUsuarios()) {
             System.out.println("[ID " + usuario.getId() + "] - " + usuario.getNome() + " [" + usuario.getTipo() + "]");
         }
     }
@@ -69,7 +71,7 @@ public class Menu {
             return;
         }
         // Como na v0, o ID do livro so e pedido se o usuario existir.
-        if (!biblioteca.existeUsuario(idUsuario)) {
+        if (!consulta.existeUsuario(idUsuario)) {
             System.out.println("Usuario nao encontrado.");
             return;
         }
@@ -78,7 +80,7 @@ public class Menu {
             System.out.println("ID invalido.");
             return;
         }
-        System.out.println(biblioteca.emprestar(idUsuario, idLivro));
+        System.out.println(operacoes.emprestar(idUsuario, idLivro));
     }
 
     private void devolver() {
@@ -96,7 +98,7 @@ public class Menu {
         if (diasAtraso == null) {
             diasAtraso = 0;
         }
-        System.out.println(biblioteca.devolver(idUsuario, idLivro, diasAtraso));
+        System.out.println(operacoes.devolver(idUsuario, idLivro, diasAtraso));
     }
 
     // Devolve null quando a entrada nao e um numero inteiro.

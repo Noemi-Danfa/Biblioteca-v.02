@@ -2,7 +2,7 @@ public class Main {
     public static void main(String[] args) {
         Biblioteca biblioteca = new Biblioteca();
         seed(biblioteca);
-        new Menu(biblioteca).executar();
+        new Menu(biblioteca, biblioteca).executar();
     }
 
     private static void seed(Biblioteca biblioteca) {
