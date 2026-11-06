@@ -22,4 +22,10 @@ public class Emprestimo {
     public double calcularMulta(int diasAtraso) {
         return diasAtraso * usuario.getMultaPorDia();
     }
+
+     public double encerrar(int diasAtraso) {
+        livro.devolver();
+        return calcularMulta(diasAtraso);
+    }
 }
+

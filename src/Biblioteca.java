@@ -76,8 +76,7 @@ public class Biblioteca {
         if (emprestimo == null) {
             return "Emprestimo nao encontrado.";
         }
-        double multa = emprestimo.calcularMulta(diasAtraso);
-        emprestimo.getLivro().devolver();
+       double multa = emprestimo.encerrar(diasAtraso);
         emprestimos.remove(emprestimo);
         totalMultasArrecadadas += multa;
         return "Devolucao realizada. Multa: R$ " + multa;
