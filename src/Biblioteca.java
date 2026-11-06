@@ -13,24 +13,10 @@ public class Biblioteca {
         return livro;
     }
 
-    public Usuario cadastrarUsuario(String nome, String tipo) {
-        Usuario usuario;
-        switch (tipo) {
-            case "aluno":
-                usuario = new Aluno(nome);
-                break;
-            case "professor":
-                usuario = new Professor(nome);
-                break;
-            case "comunidade":
-                usuario = new Comunidade(nome);
-                break;
-            default:
-                throw new IllegalArgumentException("Tipo de usuario desconhecido: " + tipo);
-        }
-        usuarios.add(usuario);
-        return usuario;
-    }
+     public void adicionarUsuario(Usuario usuario) {
+          usuarios.add(usuario);
+    } 
+    
 
     public List<Livro> getLivros() {
         return List.copyOf(livros);
@@ -42,7 +28,7 @@ public class Biblioteca {
     
     public double getTotalMultasArrecadadas() {
           return caixa.getTotal();
-   }
+    }
 
     public boolean existeUsuario(int id) {
         return buscarUsuario(id) != null;
@@ -118,4 +104,5 @@ public class Biblioteca {
         }
         return quantidade;
     }
+
 }

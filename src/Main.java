@@ -10,8 +10,8 @@ public class Main {
         biblioteca.cadastrarLivro("Clean Code", "Robert Martin");
         biblioteca.cadastrarLivro("Refactoring", "Martin Fowler");
         biblioteca.cadastrarLivro("O Cortico", "Aluisio Azevedo");
-        biblioteca.cadastrarUsuario("Ana", "aluno");
-        biblioteca.cadastrarUsuario("Prof. Bruno", "professor");
-        biblioteca.cadastrarUsuario("Carlos", "comunidade");
-    }
+        biblioteca.adicionarUsuario(new Aluno("Ana"));
+        biblioteca.adicionarUsuario(new Professor("Prof. Bruno"));
+        biblioteca.adicionarUsuario(new Comunidade("Carlos"));
+}
 }
