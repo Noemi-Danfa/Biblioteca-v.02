@@ -5,7 +5,7 @@ public class Biblioteca {
     private final List<Livro> livros = new ArrayList<>();
     private final List<Usuario> usuarios = new ArrayList<>();
     private final List<Emprestimo> emprestimos = new ArrayList<>();
-    private double totalMultasArrecadadas = 0.0;
+    private final  caixa caixa = new caixa();
 
     public Livro cadastrarLivro(String titulo, String autor) {
         Livro livro = new Livro(titulo, autor);
@@ -39,10 +39,10 @@ public class Biblioteca {
     public List<Usuario> getUsuarios() {
         return List.copyOf(usuarios);
     }
-
+    
     public double getTotalMultasArrecadadas() {
-        return totalMultasArrecadadas;
-    }
+          return caixa.getTotal();
+   }
 
     public boolean existeUsuario(int id) {
         return buscarUsuario(id) != null;
@@ -78,7 +78,7 @@ public class Biblioteca {
         }
        double multa = emprestimo.encerrar(diasAtraso);
         emprestimos.remove(emprestimo);
-        totalMultasArrecadadas += multa;
+        caixa.registrar(multa);
         return "Devolucao realizada. Multa: R$ " + multa;
     }
 
